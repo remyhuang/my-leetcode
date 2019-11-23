@@ -1,6 +1,6 @@
 # Leetcode 
 * top 100 liked questions ([link](https://leetcode.com/problemset/top-100-liked-questions/))
-* top interviewed questions ([link](https://leetcode.com/problemset/top-interview-questions/))
+* top interview questions ([link](https://leetcode.com/problemset/top-interview-questions/))
 
 ## 1. Two Sum (Easy)
 ```
