@@ -278,3 +278,72 @@ class Solution(object):
         second.next = second.next.next
         return head
 ```
+
+## 20. Valid Parentheses (Easy)
+```
+Input: "{[]}"
+Output: true
+
+Input: "([)]"
+Output: false
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        pairs = {'}': '{', ')': '(', ']': '['}
+        
+        for char in s:
+            if char in pairs:
+                if stack:
+                    top_element = stack.pop()
+                    if pairs[char] != top_element:
+                        return False
+                else:
+                    return False
+            else:
+                stack.append(char)
+        return not stack
+```
+
+## 21. Merge Two Sorted Lists (Easy)
+```
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
+```
+```
+O(m+n)
+```
+```python
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        dummy = cur = ListNode(0)
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        cur.next = l1 or l2
+        return dummy.next
+```
