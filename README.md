@@ -1,8 +1,19 @@
 # Leetcode 
-* top 100 liked questions ([link](https://leetcode.com/problemset/top-100-liked-questions/))
-* top interview questions ([link](https://leetcode.com/problemset/top-interview-questions/))
+- top 100 liked questions ([link](https://leetcode.com/problemset/top-100-liked-questions/))
+- top interview questions ([link](https://leetcode.com/problemset/top-interview-questions/))
 
-## 1. Two Sum (Easy)
+- [Two Sum (Easy)](#1-two-sum)
+- [Add Two Numbers (Medium)](#2-add-two-numbers)
+- [Longest Substring Without Repeating Characters (Medium)](#3-longest-substring-without-repeating-characters)
+- [Longest Palindromic Substring (Medium)](#5-longest-palindromic-substring)
+- [Container With Most Water (Medium)](#11-container-with-most-water)
+- [3Sum (Medium)](#15-3sum)
+- [Letter Combinations of a Phone Number (Medium)](#17-letter-combinations-of-a-phone-number)
+- [Remove Nth Node From End of List (Medium)](#19-remove-nth-node-from-end-of-list)
+- [Valid Parentheses (Easy)](#20-valid-parentheses)
+- [Merge Two Sorted Lists (Easy)](#21-merge-two-sorted-lists)
+
+## 1. Two Sum
 ```
 Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
@@ -27,7 +38,7 @@ class Solution(object):
             seen[nums[i]] = i
 ```
 
-## 2. Add Two Numbers (Medium)
+## 2. Add Two Numbers
 ```
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
@@ -69,7 +80,7 @@ class Solution(object):
         return result.next
 ```
 
-## 3. Longest Substring Without Repeating Characters (Medium)
+## 3. Longest Substring Without Repeating Characters
 ```
 Input: "abcabcbb"
 Output: 3 
@@ -106,9 +117,7 @@ class Solution(object):
         return maxLength
 ```
 
-## 4. Median of Two Sorted Arrays (Hard)
-
-## 5. Longest Palindromic Substring (Medium)
+## 5. Longest Palindromic Substring
 ```
 Input: "babad"
 Output: "bab"
@@ -141,9 +150,7 @@ class Solution(object):
         return s[l+1:r]
 ```
 
-## 10. Regular Expression Matching (Hard)
-
-## 11. Container With Most Water (Medium)
+## 11. Container With Most Water
 ```
 Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
@@ -173,7 +180,7 @@ class Solution(object):
         return ans
 ```
 
-## 15. 3Sum (Medium)
+## 15. 3Sum
 ```
 Given array nums = [-1, 0, 1, 2, -1, -4],
 
@@ -219,7 +226,7 @@ class Solution(object):
         return ans
 ```
 
-## 17. Letter Combinations of a Phone Number (Medium)
+## 17. Letter Combinations of a Phone Number
 ```
 Input: "23"
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
@@ -246,7 +253,7 @@ class Solution(object):
         return ans
 ```
 
-## 19. Remove Nth Node From End of List (Medium)
+## 19. Remove Nth Node From End of List
 ```
 Given linked list: 1->2->3->4->5, and n = 2.
 After removing the second node from the end, the linked list becomes 1->2->3->5.
@@ -281,7 +288,7 @@ class Solution(object):
         return head
 ```
 
-## 20. Valid Parentheses (Easy)
+## 20. Valid Parentheses
 ```
 Input: "{[]}"
 Output: true
@@ -315,7 +322,7 @@ class Solution(object):
         return not stack
 ```
 
-## 21. Merge Two Sorted Lists (Easy)
+## 21. Merge Two Sorted Lists
 ```
 Input: 1->2->4, 1->3->4
 Output: 1->1->2->3->4->4
