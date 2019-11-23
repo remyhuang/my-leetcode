@@ -267,11 +267,10 @@ class Solution(object):
         :rtype: ListNode
         """
         first = second = head
-        if n == 0:
+        for _ in range(n):
+            first = first.next
+        if not first:
             return head.next
-        else:
-            for _ in range(n):
-                first = first.next
         
         while first.next:
             first = first.next
