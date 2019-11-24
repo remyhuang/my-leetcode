@@ -22,6 +22,7 @@
 	- [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
 	- [Permutations](#permutations)
 	- [Generate Parentheses](#generate-parentheses)
+	- [Top K Frequent Elements](#top-k-frequent-elements)
 
 ## Two Sum
 ```
@@ -593,4 +594,34 @@ class Solution(object):
             self.DFS(left_stack-1, right_stack, path+"(", ans)
         if right_stack:
             self.DFS(left_stack, right_stack-1, path+")", ans)
+```
+
+## Top K Frequent Elements
+```
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+```
+```
+O(n)?
+```
+```python
+from collections import defaultdict, Counter
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        count = defaultdict(list)
+        for key, c in Counter(nums).items():
+            count[c].append(key)
+        
+        ans = []
+        for target in range(len(nums), 0, -1):
+            ans.extend(count.get(target, []))
+            if len(ans) >= k:
+                return ans[:k]
+        return ans[:k]
 ```
