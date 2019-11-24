@@ -1,6 +1,6 @@
 # My Leetcode 
-- Top 100 liked questions ([link](https://leetcode.com/problemset/top-100-liked-questions/))
-- Top interview questions ([link](https://leetcode.com/problemset/top-interview-questions/))
+- [Top 100 liked questions](https://leetcode.com/problemset/top-100-liked-questions/)
+- [Top interview questions](https://leetcode.com/problemset/top-interview-questions/)
 
 ## Table of Contents
 - Easy
@@ -11,6 +11,7 @@
 	- [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
 	- [Single Number](#single-number)
 	- [Fizz Buzz](#fizz-buzz)
+	- [Reverse Linked List](#reverse-linked-list)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -624,4 +625,47 @@ class Solution(object):
             if len(ans) >= k:
                 return ans[:k]
         return ans[:k]
+```
+
+## Reverse Linked List
+```
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+```
+```
+O(n)
+```
+```python
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    # iteratively
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        ans = None
+        while head:
+            cur = head
+            head = head.next
+            cur.next = ans
+            ans = cur
+        return ans
+    
+    # recursively
+    def reverseList(self, head, prev=None):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head:
+            return prev
+    
+        curr, head.next = head.next, prev
+        return self.reverseList(curr, head)
 ```
