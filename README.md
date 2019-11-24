@@ -24,6 +24,7 @@
 	- [Permutations](#permutations)
 	- [Generate Parentheses](#generate-parentheses)
 	- [Top K Frequent Elements](#top-k-frequent-elements)
+	- [Product of Array Except Self](#product-of-array-except-self)
 
 ## Two Sum
 ```
@@ -668,4 +669,33 @@ class Solution(object):
     
         curr, head.next = head.next, prev
         return self.reverseList(curr, head)
+```
+
+## Product of Array Except Self
+```
+Input:  [1,2,3,4]
+Output: [24,12,8,6]
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        ans = []
+        p = 1
+        for i in range(len(nums)):
+            ans.append(p)
+            p *= nums[i]
+            
+        p = 1
+        for i in range(len(nums)-1, -1, -1):
+            ans[i] *= p
+            p *= nums[i]
+            
+        return ans
 ```
