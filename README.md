@@ -1,12 +1,16 @@
 # My Leetcode 
-- top 100 liked questions ([link](https://leetcode.com/problemset/top-100-liked-questions/))
-- top interview questions ([link](https://leetcode.com/problemset/top-interview-questions/))
+- Top 100 liked questions ([link](https://leetcode.com/problemset/top-100-liked-questions/))
+- Top interview questions ([link](https://leetcode.com/problemset/top-interview-questions/))
 
 ## Table of Contents
 - Easy
 	- [Two Sum](#two-sum)
 	- [Valid Parentheses](#valid-parentheses)
 	- [Merge Two Sorted Lists](#merge-two-sorted-lists)
+	- [Roman to Integer](#roman-to-integer)
+	- [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
+	- [Single Number](#single-number)
+	- [Fizz Buzz](#fizz-buzz)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -15,6 +19,9 @@
 	- [3Sum](#3sum)
 	- [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
 	- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
+	- [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
+	- [Permutations](#permutations)
+	- [Generate Parentheses](#generate-parentheses)
 
 ## Two Sum
 ```
@@ -358,4 +365,232 @@ class Solution(object):
             cur = cur.next
         cur.next = l1 or l2
         return dummy.next
+```
+
+## Roman to Integer
+```
+Input: "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        roman = {'M': 1000, 'D': 500, 'C': 100, 
+                 'L': 50, 'X': 10, 'V': 5,'I': 1}
+        ans = 0
+        for i in range(len(s)-1):
+            if roman.get(s[i]) >= roman.get(s[i+1]):
+                ans += roman.get(s[i])
+            else:
+                ans -= roman.get(s[i])
+        return ans + roman.get(s[-1])
+```
+
+## Maximum Depth of Binary Tree
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+Depth: 3
+```
+```
+O(n)
+```
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+```
+
+## Single Number
+```
+Input: [4,1,2,1,2]
+Output: 4
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return 2*sum(set(nums))-sum(nums)
+```
+
+## Fizz Buzz
+```
+n = 15,
+
+Return:
+[
+    "1",
+    "2",
+    "Fizz",
+    "4",
+    "Buzz",
+    "Fizz",
+    "7",
+    "8",
+    "Fizz",
+    "Buzz",
+    "11",
+    "Fizz",
+    "13",
+    "14",
+    "FizzBuzz"
+]
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def fizzBuzz(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        ans = []
+        for i in range(1, n+1):
+            if i % 3 == 0 and i % 5 == 0:
+                ans.append('FizzBuzz')
+            elif i % 3 == 0:
+                ans.append('Fizz')
+            elif i % 5 == 0:
+                ans.append('Buzz')
+            else:
+                ans.append(str(i))
+        return ans
+```
+
+## Binary Tree Inorder Traversal
+```
+Input: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+
+Output: [1,3,2]
+```
+```
+O(n)
+```
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root:
+            return []
+        return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
+```
+
+## Permutations
+```
+Input: [1,2,3]
+Output:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+```
+```
+O(n*n!)
+```
+```python
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        ans = []
+        self.DFS(nums, [], ans)
+        return ans
+        
+    def DFS(self, nums, path, ans):
+        if not nums:
+            ans.append(path)
+        for i in range(len(nums)):
+            self.DFS(nums[:i]+nums[i+1:], path+[nums[i]], ans)
+```
+
+## Generate Parentheses
+```
+For example, given n = 3, a solution set is:
+
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
+```
+O((2k)!/((k!*(k+1)!)).......
+```
+```python
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        if not n:
+            return []
+        ans = []
+        self.DFS(n, n, "", ans)
+        return ans
+        
+    def DFS(self, left_stack, right_stack, path, ans):
+        if left_stack > right_stack:
+            return
+        if not left_stack and not right_stack:
+            ans.append(path)
+        if left_stack:
+            self.DFS(left_stack-1, right_stack, path+"(", ans)
+        if right_stack:
+            self.DFS(left_stack, right_stack-1, path+")", ans)
 ```
