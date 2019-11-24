@@ -1,19 +1,22 @@
-# Leetcode 
+# My Leetcode 
 - top 100 liked questions ([link](https://leetcode.com/problemset/top-100-liked-questions/))
 - top interview questions ([link](https://leetcode.com/problemset/top-interview-questions/))
 
-- [Two Sum (Easy)](#1-two-sum)
-- [Add Two Numbers (Medium)](#2-add-two-numbers)
-- [Longest Substring Without Repeating Characters (Medium)](#3-longest-substring-without-repeating-characters)
-- [Longest Palindromic Substring (Medium)](#5-longest-palindromic-substring)
-- [Container With Most Water (Medium)](#11-container-with-most-water)
-- [3Sum (Medium)](#15-3sum)
-- [Letter Combinations of a Phone Number (Medium)](#17-letter-combinations-of-a-phone-number)
-- [Remove Nth Node From End of List (Medium)](#19-remove-nth-node-from-end-of-list)
-- [Valid Parentheses (Easy)](#20-valid-parentheses)
-- [Merge Two Sorted Lists (Easy)](#21-merge-two-sorted-lists)
+## Table of Contents
+- Easy
+	- [Two Sum](#two-sum)
+	- [Valid Parentheses](#valid-parentheses)
+	- [Merge Two Sorted Lists](#merge-two-sorted-lists)
+- Medium
+	- [Add Two Numbers](#add-two-numbers)
+	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
+	- [Longest Palindromic Substring](#longest-palindromic-substring)
+	- [Container With Most Water](#container-with-most-water)
+	- [3Sum](#3sum)
+	- [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
+	- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 
-## 1. Two Sum
+## Two Sum
 ```
 Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
@@ -38,7 +41,7 @@ class Solution(object):
             seen[nums[i]] = i
 ```
 
-## 2. Add Two Numbers
+## Add Two Numbers
 ```
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
@@ -80,7 +83,7 @@ class Solution(object):
         return result.next
 ```
 
-## 3. Longest Substring Without Repeating Characters
+## Longest Substring Without Repeating Characters
 ```
 Input: "abcabcbb"
 Output: 3 
@@ -117,7 +120,7 @@ class Solution(object):
         return maxLength
 ```
 
-## 5. Longest Palindromic Substring
+## Longest Palindromic Substring
 ```
 Input: "babad"
 Output: "bab"
@@ -150,7 +153,7 @@ class Solution(object):
         return s[l+1:r]
 ```
 
-## 11. Container With Most Water
+## Container With Most Water
 ```
 Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
@@ -180,7 +183,7 @@ class Solution(object):
         return ans
 ```
 
-## 15. 3Sum
+## 3Sum
 ```
 Given array nums = [-1, 0, 1, 2, -1, -4],
 
@@ -226,7 +229,7 @@ class Solution(object):
         return ans
 ```
 
-## 17. Letter Combinations of a Phone Number
+## Letter Combinations of a Phone Number
 ```
 Input: "23"
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
@@ -253,7 +256,7 @@ class Solution(object):
         return ans
 ```
 
-## 19. Remove Nth Node From End of List
+## Remove Nth Node From End of List
 ```
 Given linked list: 1->2->3->4->5, and n = 2.
 After removing the second node from the end, the linked list becomes 1->2->3->5.
@@ -288,7 +291,7 @@ class Solution(object):
         return head
 ```
 
-## 20. Valid Parentheses
+## Valid Parentheses
 ```
 Input: "{[]}"
 Output: true
@@ -322,7 +325,7 @@ class Solution(object):
         return not stack
 ```
 
-## 21. Merge Two Sorted Lists
+## Merge Two Sorted Lists
 ```
 Input: 1->2->4, 1->3->4
 Output: 1->1->2->3->4->4
