@@ -12,6 +12,7 @@
 	- [Single Number](#single-number)
 	- [Fizz Buzz](#fizz-buzz)
 	- [Reverse Linked List](#reverse-linked-list)
+	- [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -25,6 +26,8 @@
 	- [Generate Parentheses](#generate-parentheses)
 	- [Top K Frequent Elements](#top-k-frequent-elements)
 	- [Product of Array Except Self](#product-of-array-except-self)
+	- [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
+	- [Valid Sudoku](#valid-sudoku)
 
 ## Two Sum
 ```
@@ -698,4 +701,125 @@ class Solution(object):
             p *= nums[i]
             
         return ans
+```
+
+## Remove Duplicates from Sorted Array
+```
+Given nums = [0,0,1,1,1,2,2,3,3,4],
+
+Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
+
+It doesn't matter what values are set beyond the returned length.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+
+        newTail = 0
+
+        for i in range(1, len(nums)):
+            if nums[i] != nums[newTail]:
+                newTail += 1
+                nums[newTail] = nums[i]
+
+        return newTail + 1
+```
+
+## Find First and Last Position of Element in Sorted Array
+```
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
+```
+```
+O(n)
+ps. there is another O(logn) solution
+```
+```python
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        left_idx = -1
+        
+        for i in range(len(nums)):
+            if nums[i] == target:
+                left_idx = i
+                break
+        
+        if left_idx == -1:
+            return [-1, -1]
+        
+        for j in range(len(nums)-1, -1, -1):
+            if nums[j] == target:
+                right_idx = j
+                break
+                
+        return [left_idx, right_idx]
+```
+
+## Valid Sudoku
+```
+Input:
+[
+  ["8","3",".",".","7",".",".",".","."],
+  ["6",".",".","1","9","5",".",".","."],
+  [".","9","8",".",".",".",".","6","."],
+  ["8",".",".",".","6",".",".",".","3"],
+  ["4",".",".","8",".","3",".",".","1"],
+  ["7",".",".",".","2",".",".",".","6"],
+  [".","6",".",".",".",".","2","8","."],
+  [".",".",".","4","1","9",".",".","5"],
+  [".",".",".",".","8",".",".","7","9"]
+]
+Output: false
+Explanation: Same as Example 1, except with the 5 in the top left corner being 
+    modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid.
+```
+```
+O(n^2)
+```
+```python
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        def is_valid(data):
+            nums = [d for d in data if d != '.']
+            return len(nums) == len(set(nums))
+
+        def is_valid_row(board):
+            for data in board:
+                if not is_valid(data):
+                    return False
+            return True
+
+        def is_valid_column(board):
+            for data in zip(*board):
+                if not is_valid(data):
+                    return False
+            return True
+
+        def is_valid_square(board):
+            for i in [0, 3, 6]:
+                for j in [0, 3, 6]:
+                    data = [board[ii][jj] for ii in range(i, i+3) for jj in range(j, j+3)]
+                    if not is_valid(data):
+                        return False
+            return True
+        
+        return is_valid_row(board) and is_valid_column(board) and is_valid_square(board)
 ```
