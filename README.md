@@ -28,6 +28,11 @@
 	- [Product of Array Except Self](#product-of-array-except-self)
 	- [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
 	- [Valid Sudoku](#valid-sudoku)
+	- [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+	- [Rotate Image](#rotate-image)
+	- [Group Anagrams](#group-anagrams)
+	- [Pow(x, n)](#powx-n)
+	- [Subarray Sum Equals K](#subarray-sum-equals-k)
 
 ## Two Sum
 ```
@@ -822,4 +827,154 @@ class Solution(object):
             return True
         
         return is_valid_row(board) and is_valid_column(board) and is_valid_square(board)
+```
+
+## Search in Rotated Sorted Array
+```
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+```
+```
+O(logn)
+```
+```python
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        l, r = 0, len(nums)-1
+        
+        while l <= r:
+            mid = (l+r) // 2
+            
+            if nums[mid] == target:
+                return mid
+            
+            if nums[l] <= nums[mid]:
+                if nums[l] <= target < nums[mid]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+            else:
+                if nums[r] >= target > nums[mid]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+        return -1
+```
+
+## Rotate Image
+```
+Given input matrix = 
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+],
+
+rotate the input matrix in-place such that it becomes:
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+```
+```
+?
+```
+```python
+class Solution(object):
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        matrix.reverse()
+        for i in range(len(matrix)):
+            for j in range(i):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+```
+
+## Group Anagrams
+```
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+```
+```
+O(Nklogk)
+```
+```python
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        d = {}
+        for s in strs:
+            key = tuple(sorted(s))
+            d[key] = d.get(key, []) + [s]
+        return list(d.values())
+```
+
+## Pow(x, n)
+```
+Input: 2.00000, 10
+Output: 1024.00000
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        if not n:
+            return 1
+        
+        if n < 0:
+            return 1 / self.myPow(x, -n)
+        
+        if n % 2:
+            return x * self.myPow(x, n-1)
+        
+        return self.myPow(x*x, n/2)
+```
+
+## Subarray Sum Equals K
+```
+Input:nums = [1,1,1], k = 2
+Output: 2
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        d = {0: 1}
+        cusum = 0
+        counter = 0
+        for n in nums:
+            cusum += n
+            counter += d.get(cusum-k, 0)
+            d[cusum] = d.get(cusum, 0) + 1
+        return counter
 ```
