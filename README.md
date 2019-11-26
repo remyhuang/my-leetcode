@@ -13,6 +13,7 @@
 	- [Fizz Buzz](#fizz-buzz)
 	- [Reverse Linked List](#reverse-linked-list)
 	- [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
+	- [Maximum Subarray](#maximum-subarray)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -33,6 +34,7 @@
 	- [Group Anagrams](#group-anagrams)
 	- [Pow(x, n)](#powx-n)
 	- [Subarray Sum Equals K](#subarray-sum-equals-k)
+	- [Maximum Product Subarray](#maximum-product-subarray)
 
 ## Two Sum
 ```
@@ -977,4 +979,54 @@ class Solution(object):
             counter += d.get(cusum-k, 0)
             d[cusum] = d.get(cusum, 0) + 1
         return counter
+```
+
+## Maximum Product Subarray
+```
+Input: [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums_reverse = nums[::-1]
+        
+        for i in range(1, len(nums)):
+            if nums[i-1] != 0:
+                nums[i] *= nums[i-1]
+            if nums_reverse[i-1] != 0:
+                nums_reverse[i] *= nums_reverse[i-1]
+        
+        return max(nums + nums_reverse)
+```
+
+## Maximum Subarray
+```
+Input: [-2,1,-3,4,-1,2,1,-5,4],
+Output: 6
+Explanation: [4,-1,2,1] has the largest sum = 6.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cusum = maxsum = nums[0]
+        for n in nums[1:]:
+            cusum = max(n, cusum+n)
+            maxsum = max(cusum, maxsum)
+        return maxsum
 ```
