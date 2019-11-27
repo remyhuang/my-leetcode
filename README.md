@@ -14,6 +14,8 @@
 	- [Reverse Linked List](#reverse-linked-list)
 	- [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
 	- [Maximum Subarray](#maximum-subarray)
+	- [Climbing Stairs](#climbing-stairs)
+	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -35,6 +37,8 @@
 	- [Pow(x, n)](#powx-n)
 	- [Subarray Sum Equals K](#subarray-sum-equals-k)
 	- [Maximum Product Subarray](#maximum-product-subarray)
+	- [Unique Paths](#unique_paths)
+	- [Word Break](#word-break)
 
 ## Two Sum
 ```
@@ -1030,3 +1034,118 @@ class Solution(object):
             maxsum = max(cusum, maxsum)
         return maxsum
 ```
+
+## Unique Paths
+```
+Input: m = 3, n = 2
+Output: 3
+Explanation:
+From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+1. Right -> Right -> Down
+2. Right -> Down -> Right
+3. Down -> Right -> Right
+```
+```
+O(m*n)
+```
+```python
+class Solution(object):
+    def uniquePaths(self, m, n):
+        """
+        :type m: int
+        :type n: int
+        :rtype: int
+        """
+        table = [[1 for _  in range(n)] for _ in range(m)]
+        for i in range(1, m):
+            for j in range(1, n):
+                table[i][j] = table[i-1][j] + table[i][j-1]
+        return table[-1][-1]
+```
+
+## Climbing Stairs
+```
+Input: 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 0:
+            return 0
+        
+        if n == 1:
+            return 1
+        
+        table = [0 for _ in range(n)]
+        table[0] = 1
+        table[1] = 2
+        for i in range(2, n):
+            table[i] = table[i-1] + table[i-2]
+        return table[-1]
+```
+
+## Best Time to Buy and Sell Stock
+```
+Input: [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+             Not 7-1 = 6, as selling price needs to be larger than buying price.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        maxCur, maxAll = 0, 0
+        for i in range(1, len(prices)):
+            maxCur += prices[i] - prices[i-1]
+            maxCur = max(0, maxCur)
+            maxAll = max(maxCur, maxAll)
+        return maxAll
+```
+
+## Word Break
+```
+Input: s = "leetcode", wordDict = ["leet", "code"]
+Output: true
+Explanation: Return true because "leetcode" can be segmented as "leet code".
+```
+```
+O(nk)
+```
+```python
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
+        n = len(s)
+        table = [False for _ in range(n+1)]
+        table[0] = True
+        for i in range(1, n+1):
+            for word in wordDict:
+                if s[i-len(word):i] == word and table[i-len(word)]:
+                    table[i] = True
+        return table[-1]
+```
+
+## 
