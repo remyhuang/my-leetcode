@@ -41,6 +41,8 @@
 	- [Unique Paths](#unique_paths)
 	- [Word Break](#word-break)
 	- [Perfect Squares](#perfect-squares)
+	- [Longest Increasing Subsequence](#longest-increasing-subsequence)\
+	- [Coin Change](#coin-change)
 
 ## Two Sum
 ```
@@ -1206,5 +1208,63 @@ class Solution(object):
                 j += 1
             if len(candidates):
                 dp[i] = min(candidates)
+        return dp[-1]
+```
+
+## Longest Increasing Subsequence
+```
+Input: [10,9,2,5,3,7,101,18]
+Output: 4 
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
+```
+```
+O(n^2)
+```
+```python
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        
+        n = len(nums)
+        dp = [1] * n
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j]+1)
+        return max(dp)
+```
+
+## Coin Change
+```
+Input: coins = [1, 2, 5], amount = 11
+Output: 3 
+Explanation: 11 = 5 + 5 + 1
+```
+```
+O(S*n)
+```
+```python
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        dp = [0] + [float('inf') for _ in range(amount)]
+        
+        for i in range(1, amount+1):
+            for coin in coins:
+                if (i - coin) >= 0:
+                    dp[i] = min(dp[i], dp[i-coin]+1)
+        
+        if dp[-1] == float('inf'):
+            return -1
+        
         return dp[-1]
 ```
