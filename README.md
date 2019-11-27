@@ -43,6 +43,8 @@
 	- [Perfect Squares](#perfect-squares)
 	- [Longest Increasing Subsequence](#longest-increasing-subsequence)\
 	- [Coin Change](#coin-change)
+	- [Merge Intervals](#merge-intervals)
+	- [Jump Game](#jump-game)
 
 ## Two Sum
 ```
@@ -1267,4 +1269,67 @@ class Solution(object):
             return -1
         
         return dp[-1]
+```
+
+## Merge Intervals
+```
+Input: [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+```
+```
+O(nlogn)
+```
+```python
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        if len(intervals) == 0:
+            return []
+    
+        if len(intervals) == 1:
+            return intervals
+        
+        intervals.sort(key=lambda x: x[0])
+        
+        merged = []
+        for i, interval in enumerate(intervals):
+            if i == 0:
+                merged.append(interval)
+            if interval[0] <= merged[-1][-1]:
+                if interval[-1] > merged[-1][-1]:
+                    merged[-1][-1] = interval[-1]
+            else:
+                merged.append(interval)
+        return merged
+```
+
+## Jump Game
+```
+Input: [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        i = 0
+        maxReachIndex = nums[0]
+        lastIndex = len(nums) - 1
+        
+        while i <= maxReachIndex and i <= lastIndex:
+            maxReachIndex = max(maxReachIndex, nums[i]+i)
+            i += 1
+            
+        return maxReachIndex >= lastIndex
 ```
