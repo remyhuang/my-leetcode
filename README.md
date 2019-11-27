@@ -40,6 +40,7 @@
 	- [Maximum Product Subarray](#maximum-product-subarray)
 	- [Unique Paths](#unique_paths)
 	- [Word Break](#word-break)
+	- [Perfect Squares](#perfect-squares)
 
 ## Two Sum
 ```
@@ -1180,4 +1181,30 @@ class Solution(object):
         return table[-1]
 ```
 
-## 
+## Perfect Squares
+```
+Input: n = 13
+Output: 2
+Explanation: 13 = 4 + 9.
+```
+```
+O(n*(n^1/2))
+```
+```python
+class Solution(object):
+    def numSquares(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [0 for _ in range(n+1)]
+        for i in range(1, n+1):
+            candidates = []
+            j = 1
+            while j*j <= i:
+                candidates.append(dp[i-j*j]+1)
+                j += 1
+            if len(candidates):
+                dp[i] = min(candidates)
+        return dp[-1]
+```
