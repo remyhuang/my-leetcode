@@ -41,10 +41,11 @@
 	- [Unique Paths](#unique_paths)
 	- [Word Break](#word-break)
 	- [Perfect Squares](#perfect-squares)
-	- [Longest Increasing Subsequence](#longest-increasing-subsequence)\
+	- [Longest Increasing Subsequence](#longest-increasing-subsequence)
 	- [Coin Change](#coin-change)
 	- [Merge Intervals](#merge-intervals)
 	- [Jump Game](#jump-game)
+	- [Subsets](#subsets)
 
 ## Two Sum
 ```
@@ -1332,4 +1333,35 @@ class Solution(object):
             i += 1
             
         return maxReachIndex >= lastIndex
+```
+
+## Subsets
+```
+Input: nums = [1,2,3]
+Output:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+```
+```
+O(2^n)
+```
+```python
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        result = [[]]
+        for num in nums:
+            result += [i + [num] for i in result]
+        return result
 ```
