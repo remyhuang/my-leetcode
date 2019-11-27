@@ -16,6 +16,7 @@
 	- [Maximum Subarray](#maximum-subarray)
 	- [Climbing Stairs](#climbing-stairs)
 	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
+	- [House Robber](#house-robber)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -1145,6 +1146,37 @@ class Solution(object):
             for word in wordDict:
                 if s[i-len(word):i] == word and table[i-len(word)]:
                     table[i] = True
+        return table[-1]
+```
+
+## House Robber
+```
+Input: [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+             Total amount you can rob = 1 + 3 = 4.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return 0
+        
+        if len(nums) == 1:
+            return nums[0]
+        
+        table = [0 for _ in range(len(nums))]
+        table[0] = nums[0]
+        table[1] = max(nums[0], nums[1])
+        for i in range(2, len(nums)):
+            table[i] = max(table[i-1], table[i-2] + nums[i])
         return table[-1]
 ```
 
