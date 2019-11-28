@@ -15,10 +15,10 @@
 	- [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
 	- [Maximum Subarray](#maximum-subarray)
 	- [Climbing Stairs](#climbing-stairs)
-	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 	- [House Robber](#house-robber)
 	- [Symmetric Tree](#symmetric-tree)
 	- [Pascal's Triangle](#pascals-triangle)
+	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 	- [Best Time to Buy and Sell Stock II](#best-time-to-buy-and-sell-stock-ii)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
@@ -56,6 +56,7 @@
 	- [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
 	- [Course Schedule](#course-schedule)
 	- [Course Schedule II](#course-schedule-ii)
+	- [Number of Islands](#number-of-islands)
 
 ## Two Sum
 ```
@@ -1801,4 +1802,67 @@ class Solution(object):
             if profit > 0:
                 ans += profit
         return ans
+```
+
+## Number of Islands
+```
+11000
+11000
+00100
+00011
+
+Output: 3
+```
+```
+O(m*n)
+```
+```python
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        if not grid:
+            return 0
+        
+        if not len(grid[0]):
+            return 0
+        
+        self.grid = grid
+        self.m, self.n = len(self.grid), len(self.grid[0])
+        self.direction = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        
+        count = 0
+        for r in range(self.m):
+            for c in range(self.n):
+                if self.grid[r][c] == '1':
+                    # bfs or dfs
+                    self.bfs(r, c)
+                    self.dfs(r, c)
+                    count += 1
+        return count
+            
+    def isValid(self, r, c):
+        if r < 0 or c < 0 or r >= self.m or c >= self.n:
+            return False
+        return True
+        
+    def bfs(self, r, c):
+        queue = [[r, c]]
+        self.grid[r][c] = '0'
+        while queue:
+            r, c = queue.pop(0)
+            for d in self.direction:
+                nr, nc = r + d[0], c + d[1]
+                if self.isValid(nr, nc) and self.grid[nr][nc] == '1':
+                    queue.append([nr, nc])
+                    self.grid[nr][nc] = '0'
+                    
+    def dfs(self, r, c):
+        self.grid[r][c] = '0'
+        for d in self.direction:
+            nr, nc = r + d[0], c + d[1]
+            if self.isValid(nr, nc) and self.grid[nr][nc] == '1':
+                self.dfs(nr, nc)
 ```
