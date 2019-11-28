@@ -48,6 +48,7 @@
 	- [Subsets](#subsets)
 	- [Word Search](#word-search)
 	- [Validate Binary Search Tree](#validate-binary-search-tree)
+	- [Set Matrix Zeroes](#set-matrix-zeroes)
 
 ## Two Sum
 ```
@@ -1458,4 +1459,43 @@ class Solution(object):
             return False
         
         return self.check(node.left, left, node.val) and self.check(node.right, node.val, right)
+```
+
+## Set Matrix Zeroes
+```
+Input: 
+[
+  [1,1,1],
+  [1,0,1],
+  [1,1,1]
+]
+Output: 
+[
+  [1,0,1],
+  [0,0,0],
+  [1,0,1]
+]
+```
+```
+O(m*n)
+```
+```python
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        len_row, len_col = len(matrix), len(matrix[0])
+        row, col = [], []
+        for i in range(len_row):
+            for j in range(len_col):
+                if matrix[i][j] == 0:
+                    row.append(i)
+                    col.append(j)
+                    
+        for r in range(len_row):
+            for c in range(len_col):
+                if r in row or c in col:
+                    matrix[r][c] = 0
 ```
