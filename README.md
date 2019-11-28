@@ -17,6 +17,7 @@
 	- [Climbing Stairs](#climbing-stairs)
 	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 	- [House Robber](#house-robber)
+	- [Symmetric Tree](#symmetric-tree)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -38,7 +39,7 @@
 	- [Pow(x, n)](#powx-n)
 	- [Subarray Sum Equals K](#subarray-sum-equals-k)
 	- [Maximum Product Subarray](#maximum-product-subarray)
-	- [Unique Paths](#unique_paths)
+	- [Unique Paths](#unique-paths)
 	- [Word Break](#word-break)
 	- [Perfect Squares](#perfect-squares)
 	- [Longest Increasing Subsequence](#longest-increasing-subsequence)
@@ -49,6 +50,10 @@
 	- [Word Search](#word-search)
 	- [Validate Binary Search Tree](#validate-binary-search-tree)
 	- [Set Matrix Zeroes](#set-matrix-zeroes)
+	- [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
+	- [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
+	- [Course Schedule](#course-schedule)
+	- [Course Schedule II](#course-schedule-ii)
 
 ## Two Sum
 ```
@@ -1498,4 +1503,235 @@ class Solution(object):
             for c in range(len_col):
                 if r in row or c in col:
                     matrix[r][c] = 0
+```
+
+## Symmetric Tree
+```
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+```
+```
+O(n)
+```
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        return self.check(root, root)
+        
+    def check(self, node1, node2):
+        if not node1 and not node2:
+            return True
+        
+        if not node1 or not node2:
+            return False
+        
+        if node1.val == node2.val:
+            return self.check(node1.left, node2.right) and self.check(node1.right, node2.left)
+        else:
+            return False
+```
+
+## Binary Tree Level Order Traversal
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its level order traversal as:
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+```
+```
+O(n)
+```
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        
+        ans, level = [], [root]
+        while level:
+            ans.append([node.val for node in level])
+            temp = []
+            for node in level:
+                temp.extend([node.left, node.right])
+            level = [node for node in temp if node]
+        return ans
+```
+
+## Binary Tree Zigzag Level Order Traversal
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its zigzag level order traversal as:
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+```
+```
+O(n)
+```
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def zigzagLevelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        
+        order_flag = 1
+        ans, level = [], [root]
+        while level:
+            if order_flag:
+                ans.append([node.val for node in level])
+                order_flag = 0
+            else:
+                ans.append([node.val for node in level[::-1]])
+                order_flag = 1
+                
+            temp = []
+            for node in level:
+                temp.extend([node.left, node.right])
+                
+            level = [node for node in temp if node]
+            
+        return ans
+```
+
+## Course Schedule
+```
+Input: 2, [[1,0],[0,1]]
+Output: false
+Explanation: There are a total of 2 courses to take. 
+             To take course 1 you should have finished course 0, and to take course 0 you should
+             also have finished course 1. So it is impossible.
+```
+```
+O(V+E)
+```
+```python
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        graph = collections.defaultdict(list)
+        for u, v in prerequisites:
+            graph[u].append(v)
+        
+        # 0: not yet, 1: visiting, 2: visited
+        visited = [0 for _ in range(numCourses)]
+        for i in range(numCourses):
+            if not self.dfs(graph, visited, i):
+                return False
+        return True
+    
+    def dfs(self, graph, visited, i):
+        # cycle is found
+        if visited[i] == 1:
+            return False
+        # done 
+        if visited[i] == 2:
+            return True
+        # visit all neighbors
+        visited[i] = 1
+        for j in graph[i]:
+            if not self.dfs(graph, visited, j):
+                return False
+        visited[i] = 2
+        return True
+```
+
+## Course Schedule II
+```
+Input: 4, [[1,0],[2,0],[3,1],[3,2]]
+Output: [0,1,2,3] or [0,2,1,3]
+Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both     
+             courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. 
+             So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3] .
+```
+```
+O(V+E)
+```
+```python
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        graph = collections.defaultdict(list)
+        for u, v in prerequisites:
+            graph[u].append(v)
+            
+        ans = []
+        visited = [0 for _ in range(numCourses)]
+        for i in range(numCourses):
+            if not self.dfs(graph, visited, i, ans):
+                return []
+        return ans
+            
+    def dfs(self, graph, visited, x, ans):
+        # cycle detected
+        if visited[x] == 1:
+            return False
+        # finished and been added
+        if visited[x] == 2:
+            return True
+        # go through all neighbors
+        visited[x] = 1
+        for j in graph[x]:
+            if not self.dfs(graph, visited, j, ans):
+                return False
+        # finish
+        visited[x] = 2
+        ans.append(x)
+        return True
 ```
