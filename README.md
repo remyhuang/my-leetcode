@@ -46,6 +46,8 @@
 	- [Merge Intervals](#merge-intervals)
 	- [Jump Game](#jump-game)
 	- [Subsets](#subsets)
+	- [Word Search](#word-search)
+	- [Validate Binary Search Tree](#validate-binary-search-tree)
 
 ## Two Sum
 ```
@@ -1364,4 +1366,96 @@ class Solution(object):
         for num in nums:
             result += [i + [num] for i in result]
         return result
+```
+
+## Word Search
+```
+board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+
+Given word = "ABCCED", return true.
+Given word = "SEE", return true.
+Given word = "ABCB", return false.
+```
+```
+O(n*m*k)
+```
+```python
+class Solution(object):
+    def exist(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        if not board:
+            return False
+        
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if self.dfs(board, i, j, word):
+                    return True
+        return False
+                
+        
+    def dfs(self, board, i, j, word):
+        if len(word) == 0:
+            return True
+        
+        if (i<0) or (j<0) or (i>=len(board)) or (j>=len(board[0])) or word[0] != board[i][j]:
+            return False
+        
+        temp = board[i][j]
+        board[i][j] = '#'
+        ans = self.dfs(board, i-1, j, word[1:]) or \
+            self.dfs(board, i, j-1, word[1:]) or \
+            self.dfs(board, i+1, j, word[1:]) or \
+            self.dfs(board, i, j+1, word[1:])
+        board[i][j] = temp
+        return ans
+```
+
+## Validate Binary Search Tree
+```
+    5
+   / \
+  1   4
+     / \
+    3   6
+
+Input: [5,1,4,null,null,3,6]
+Output: false
+Explanation: The root node's value is 5 but its right child's value is 4.
+```
+```
+O(n)
+```
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        return self.check(root, float('-inf'), float('inf'))
+    
+    def check(self, node, left, right):
+        if not node:
+            return True
+        
+        if not left < node.val < right:
+            return False
+        
+        return self.check(node.left, left, node.val) and self.check(node.right, node.val, right)
 ```
