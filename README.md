@@ -18,6 +18,8 @@
 	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 	- [House Robber](#house-robber)
 	- [Symmetric Tree](#symmetric-tree)
+	- [Pascal's Triangle](#pascals-triangle)
+	- [Best Time to Buy and Sell Stock II](#best-time-to-buy-and-sell-stock-ii)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -1734,4 +1736,69 @@ class Solution(object):
         visited[x] = 2
         ans.append(x)
         return True
+```
+
+## Pascal's Triangle
+```
+Input: 5
+Output:
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+```
+```
+O(n*2)
+```
+```python
+class Solution(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        if numRows == 0:
+            return []
+        
+        if numRows == 1:
+            return [[1]]
+        
+        ans = [[1]]
+        for i in range(2, numRows+1):
+            temp = [1]
+            for j in range(i-2):
+                item = ans[-1][j] + ans[-1][j+1]
+                temp.append(item)
+            temp.append(1)
+            ans.append(temp)
+            
+        return ans
+```
+
+## Best Time to Buy and Sell Stock II
+```
+Input: [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+             Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        ans = 0
+        for i in range(1, len(prices)):
+            profit = prices[i] - prices[i-1]
+            if profit > 0:
+                ans += profit
+        return ans
 ```
