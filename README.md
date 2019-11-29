@@ -25,6 +25,7 @@
 	- [Product of Array Except Self](#product-of-array-except-self)
 	- [Find the Duplicate Number](#find-the-duplicate-number)
 	- [Move Zeroes](#move-zeroes)
+	- [Find Peak Element](#find-peak-element)
 - Linked List
 	- [Add Two Numbers](#add-two-numbers)
 	- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
@@ -2149,4 +2150,28 @@ class Solution(object):
                 
         for i in range(lastNonZero, len(nums)):
             nums[i] = 0
+```
+
+## Find Peak Element
+```
+Input: nums = [1,2,1,3,5,6,4]
+Output: 1 or 5 
+Explanation: Your function can return either index number 1 where the peak element is 2, 
+             or index number 5 where the peak element is 6.
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def findPeakElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        ans = 0
+        for i, num in enumerate(nums):
+            if nums[i] > nums[ans]:
+                ans = i
+        return ans
 ```
