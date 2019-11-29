@@ -3,61 +3,66 @@
 - [Top interview questions](https://leetcode.com/problemset/top-interview-questions/)
 
 ## Table of Contents
-- Easy
+- Array
 	- [Two Sum](#two-sum)
-	- [Valid Parentheses](#valid-parentheses)
-	- [Merge Two Sorted Lists](#merge-two-sorted-lists)
-	- [Roman to Integer](#roman-to-integer)
-	- [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
-	- [Single Number](#single-number)
-	- [Fizz Buzz](#fizz-buzz)
-	- [Reverse Linked List](#reverse-linked-list)
+	- [Container With Most Water](#container-with-most-water)
+	- [3Sum](#3sum)
 	- [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
+	- [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+	- [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
+	- [Rotate Image](#rotate-image)
 	- [Maximum Subarray](#maximum-subarray)
-	- [Climbing Stairs](#climbing-stairs)
-	- [House Robber](#house-robber)
-	- [Symmetric Tree](#symmetric-tree)
+	- [Jump Game](#jump-game)
+	- [Merge Intervals](#merge-intervals)
+	- [Unique Paths](#unique-paths)
+	- [Set Matrix Zeroes](#set-matrix-zeroes)
+	- [Subsets](#subsets)
+	- [Word Search](#word-search)
 	- [Pascal's Triangle](#pascals-triangle)
 	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 	- [Best Time to Buy and Sell Stock II](#best-time-to-buy-and-sell-stock-ii)
-	- [Linked List Cycle](#linked-list-cycle)
-- Medium
-	- [Add Two Numbers](#add-two-numbers)
-	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
-	- [Longest Palindromic Substring](#longest-palindromic-substring)
-	- [Container With Most Water](#container-with-most-water)
-	- [3Sum](#3sum)
-	- [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
-	- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
-	- [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
-	- [Permutations](#permutations)
-	- [Generate Parentheses](#generate-parentheses)
-	- [Top K Frequent Elements](#top-k-frequent-elements)
-	- [Product of Array Except Self](#product-of-array-except-self)
-	- [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
-	- [Valid Sudoku](#valid-sudoku)
-	- [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
-	- [Rotate Image](#rotate-image)
-	- [Group Anagrams](#group-anagrams)
-	- [Pow(x, n)](#powx-n)
-	- [Subarray Sum Equals K](#subarray-sum-equals-k)
 	- [Maximum Product Subarray](#maximum-product-subarray)
-	- [Unique Paths](#unique-paths)
-	- [Word Break](#word-break)
-	- [Perfect Squares](#perfect-squares)
-	- [Longest Increasing Subsequence](#longest-increasing-subsequence)
-	- [Coin Change](#coin-change)
-	- [Merge Intervals](#merge-intervals)
-	- [Jump Game](#jump-game)
-	- [Subsets](#subsets)
-	- [Word Search](#word-search)
+	- [Product of Array Except Self](#product-of-array-except-self)
+- Linked List
+	- [Add Two Numbers](#add-two-numbers)
+	- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
+	- [Merge Two Sorted Lists](#merge-two-sorted-lists)
+	- [Linked List Cycle](#linked-list-cycle)
+	- [Intersection of Two Linked Lists](#intersection-of-two-linked-lists)
+	- [Reverse Linked List](#reverse-linked-list)
+- Depth-first Search
 	- [Validate Binary Search Tree](#validate-binary-search-tree)
-	- [Set Matrix Zeroes](#set-matrix-zeroes)
-	- [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
-	- [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
+	- [Symmetric Tree](#symmetric-tree)
+	- [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
+	- [Number of Islands](#number-of-islands)
 	- [Course Schedule](#course-schedule)
 	- [Course Schedule II](#course-schedule-ii)
-	- [Number of Islands](#number-of-islands)
+	- [Permutations](#permutations)
+- Hash Table
+	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
+	- [Valid Sudoku](#valid-sudoku)
+	- [Group Anagrams](#group-anagrams)
+	- [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
+	- [Single Number](#single-number)
+	- [Top K Frequent Elements](#top-k-frequent-elements)
+- Math
+	- [Roman to Integer](#roman-to-integer)
+	- [Pow(x, n)](#powx-n)
+	- [Perfect Squares](#perfect-squares)
+- Dynamic Programming
+	- [Longest Palindromic Substring](#longest-palindromic-substring)
+	- [Climbing Stairs](#climbing-stairs)
+	- [Word Break](#word-break)
+	- [House Robber](#house-robber)
+	- [Longest Increasing Subsequence](#longest-increasing-subsequence)
+	- [Coin Change](#coin-change)
+- Others
+	- [Valid Parentheses](#valid-parentheses)
+	- [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
+	- [Generate Parentheses](#generate-parentheses)
+	- [Subarray Sum Equals K](#subarray-sum-equals-k)
+	- [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
+	- [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
 
 ## Two Sum
 ```
@@ -1897,4 +1902,35 @@ class Solution(object):
             if slow == fast:
                 return True
         return False
+```
+
+## Intersection of Two Linked Lists
+```
+Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+Output: Reference of the node with value = 8
+Input Explanation: The intersected node's value is 8 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,0,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+```
+```
+O(n)
+```
+```python
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        A, B = headA, headB
+        
+        while A != B:
+            A = A.next if A else headB
+            B = B.next if B else headA
+        
+        return A
 ```
