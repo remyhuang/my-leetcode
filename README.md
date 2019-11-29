@@ -20,6 +20,7 @@
 	- [Pascal's Triangle](#pascals-triangle)
 	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 	- [Best Time to Buy and Sell Stock II](#best-time-to-buy-and-sell-stock-ii)
+	- [Linked List Cycle](#linked-list-cycle)
 - Medium
 	- [Add Two Numbers](#add-two-numbers)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
@@ -1865,4 +1866,35 @@ class Solution(object):
             nr, nc = r + d[0], c + d[1]
             if self.isValid(nr, nc) and self.grid[nr][nc] == '1':
                 self.dfs(nr, nc)
+```
+
+## Linked List Cycle
+```
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where tail connects to the second node.
+```
+```
+O(n)
+```
+```python
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        slow = fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                return True
+        return False
 ```
