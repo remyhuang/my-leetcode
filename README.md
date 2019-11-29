@@ -38,6 +38,9 @@
 	- [Course Schedule](#course-schedule)
 	- [Course Schedule II](#course-schedule-ii)
 	- [Permutations](#permutations)
+	- [Construct Binary Tree from Preorder and Inorder Traversal](#construct-binary-tree-from-preorder-and-inorder-traversal)
+	- [Convert Sorted Array to Binary Search Tree](#convert-sorted-array-to-binary-search-tree)
+	- [Populating Next Right Pointers in Each Node](#populating-next-right-pointers-in-each-node)
 - Hash Table
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
 	- [Valid Sudoku](#valid-sudoku)
@@ -1933,4 +1936,167 @@ class Solution(object):
             B = B.next if B else headA
         
         return A
+```
+
+## Construct Binary Tree from Preorder and Inorder Traversal
+```
+For example, given
+
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+```
+O(n)
+```
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        if not preorder or not inorder:
+            return None
+        
+        rootValue = preorder.pop(0)
+        root = TreeNode(rootValue)
+        rootIndex = inorder.index(rootValue)
+        
+        root.left = self.buildTree(preorder, inorder[:rootIndex])
+        root.right = self.buildTree(preorder, inorder[rootIndex+1:])
+        
+        return root
+```
+
+## Convert Sorted Array to Binary Search Tree
+```
+Given the sorted array: [-10,-3,0,5,9],
+
+One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:
+
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+ ```
+ ```
+ O(n)
+ ```
+ ```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        self.nums = nums
+        return self.helper(0, len(nums))
+        
+    def helper(self, start, end):
+        if start == end:
+            return None
+        
+        mid = (start + end) // 2
+        root = TreeNode(self.nums[mid])
+        root.left = self.helper(start, mid)
+        root.right = self.helper(mid+1, end)
+        return root
+```
+
+## Populating Next Right Pointers in Each Node
+```
+Input: root = [1,2,3,4,5,6,7]
+Output: [1,#,2,3,#,4,5,6,7,#]
+Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
+```
+```
+O(n)
+```
+```python
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution(object):
+    # recursively
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if root and root.left and root.right:
+            root.left.next = root.right
+            if root.next:
+                root.right.next = root.next.left
+            self.connect(root.left)
+            self.connect(root.right)
+        return root
+    
+    # DFS
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root:
+            return
+        
+        stack = [root]
+        while stack:
+            cur = stack.pop()
+            if cur.left and cur.right:
+                cur.left.next = cur.right
+                if cur.next:
+                    cur.right.next = cur.next.left
+                stack.append(cur.left)
+                stack.append(cur.right)
+        return root
+    
+    # BFS
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root:
+            return
+        
+        queue = [root]
+        while queue:
+            cur = queue.pop(0)
+            if cur.left and cur.right:
+                cur.left.next = cur.right
+                if cur.next:
+                    cur.right.next = cur.next.left
+                queue.append(cur.left)
+                queue.append(cur.right)
+        return root
 ```
