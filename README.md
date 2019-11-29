@@ -23,6 +23,8 @@
 	- [Best Time to Buy and Sell Stock II](#best-time-to-buy-and-sell-stock-ii)
 	- [Maximum Product Subarray](#maximum-product-subarray)
 	- [Product of Array Except Self](#product-of-array-except-self)
+	- [Find the Duplicate Number](#find-the-duplicate-number)
+	- [Move Zeroes](#move-zeroes)
 - Linked List
 	- [Add Two Numbers](#add-two-numbers)
 	- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
@@ -2099,4 +2101,52 @@ class Solution(object):
                 queue.append(cur.left)
                 queue.append(cur.right)
         return root
+```
+
+## Find the Duplicate Number
+```
+Input: [3,1,3,4,2]
+Output: 3
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        seen = set()
+        for num in nums:
+            if num in seen:
+                return num
+            seen.add(num)
+        return None
+```
+
+## Move Zeroes
+```
+Input: [0,1,0,3,12]
+Output: [1,3,12,0,0]
+```
+```
+O(n)
+```
+```python
+class Solution(object):
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        lastNonZero = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[lastNonZero] = nums[i]
+                lastNonZero += 1
+                
+        for i in range(lastNonZero, len(nums)):
+            nums[i] = 0
 ```
