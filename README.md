@@ -24,6 +24,7 @@
 	- [Find the Duplicate Number](#find-the-duplicate-number)
 	- [Move Zeroes](#move-zeroes)
 	- [Find Peak Element](#find-peak-element)
+	- [Valid Parentheses](#valid-parentheses)
 - Linked List
 	- [Add Two Numbers](#add-two-numbers)
 	- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
@@ -32,6 +33,7 @@
 	- [Intersection of Two Linked Lists](#intersection-of-two-linked-lists)
 	- [Reverse Linked List](#reverse-linked-list)
 - Depth-first Search
+	- [Generate Parentheses](#generate-parentheses)
 	- [Validate Binary Search Tree](#validate-binary-search-tree)
 	- [Symmetric Tree](#symmetric-tree)
 	- [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
@@ -44,6 +46,7 @@
 	- [Populating Next Right Pointers in Each Node](#populating-next-right-pointers-in-each-node)
 	- [Word Search](#word-search)
 - Hash Table
+	- [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
 	- [Valid Sudoku](#valid-sudoku)
 	- [Group Anagrams](#group-anagrams)
@@ -63,9 +66,6 @@
 	- [Coin Change](#coin-change)
 	- [Unique Paths](#unique-paths)
 - Others
-	- [Valid Parentheses](#valid-parentheses)
-	- [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
-	- [Generate Parentheses](#generate-parentheses)
 	- [Subarray Sum Equals K](#subarray-sum-equals-k)
 	- [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
 	- [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
