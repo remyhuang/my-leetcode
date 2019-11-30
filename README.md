@@ -16,7 +16,6 @@
 	- [Merge Intervals](#merge-intervals)
 	- [Set Matrix Zeroes](#set-matrix-zeroes)
 	- [Subsets](#subsets)
-	- [Word Search](#word-search)
 	- [Pascal's Triangle](#pascals-triangle)
 	- [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
 	- [Best Time to Buy and Sell Stock II](#best-time-to-buy-and-sell-stock-ii)
@@ -42,7 +41,8 @@
 	- [Permutations](#permutations)
 	- [Construct Binary Tree from Preorder and Inorder Traversal](#construct-binary-tree-from-preorder-and-inorder-traversal)
 	- [Convert Sorted Array to Binary Search Tree](#convert-sorted-array-to-binary-search-tree)
-	- [Populating Next Right Pointers in Each Node](#populating-next-right-pointers-in-each-node)
+	- [Populating Next Right Pointers in Each Node](#populating-next-right-pointers-in-each-node
+	- [Word Search](#word-search)
 - Hash Table
 	- [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
 	- [Valid Sudoku](#valid-sudoku)
