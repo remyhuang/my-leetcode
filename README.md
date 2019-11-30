@@ -14,7 +14,6 @@
 	- [Maximum Subarray](#maximum-subarray)
 	- [Jump Game](#jump-game)
 	- [Merge Intervals](#merge-intervals)
-	- [Unique Paths](#unique-paths)
 	- [Set Matrix Zeroes](#set-matrix-zeroes)
 	- [Subsets](#subsets)
 	- [Word Search](#word-search)
@@ -62,6 +61,7 @@
 	- [House Robber](#house-robber)
 	- [Longest Increasing Subsequence](#longest-increasing-subsequence)
 	- [Coin Change](#coin-change)
+	- [Unique Paths](#unique-paths)
 - Others
 	- [Valid Parentheses](#valid-parentheses)
 	- [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
